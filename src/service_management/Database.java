@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 	public class Database {
 	    // Key: String (Unique ID), Value: Object
-	    Map<Integer, Passenger> passengers;
+	    Map<Long, Passenger> passengers;
 	    Map<Integer, Flight> flights;
 	    Map<Integer, Ticket> tickets;
 	    Map<String, Reservation> reservations;

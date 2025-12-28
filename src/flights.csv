@@ -2,4 +2,4 @@ flightNum,departure,arrival,date,time,duration,planeId
 1015,is,iz,2025-12-25,12:11,PT2H,10
 1001,Istanbul,Ankara,2026-01-09,14:30,PT1H15M,1
 1002,Istanbul,Izmir,2026-01-10,09:00,PT1H5M,2
-1003,Ankara,Berlin,2026-01-12,22:15,PT3H45M,3
+1003,is,Berlin,2026-01-12,22:15,PT3H45M,3

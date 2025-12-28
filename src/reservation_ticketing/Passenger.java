@@ -1,19 +1,19 @@
 package reservation_ticketing;
 
 public class Passenger {
-	private int passengerId;
+	private long passengerId;
 	private String name;
 	private String surname;
 	private long contactNum;
 	
-	public Passenger(int passengerId,String name,String surname,long contactNum) {
+	public Passenger(long passengerId,String name,String surname,long contactNum) {
 		this.passengerId = passengerId;
 		this.name = name;
 		this.surname = surname;
 		this.contactNum = contactNum;
 	}
 
-	public int getPassengerId() {
+	public long getPassengerId() {
 		return passengerId;
 	}
 
@@ -45,7 +45,7 @@ public class Passenger {
 		this.contactNum = contactNum;
 	}
 	
-	public String toFileString() {
+	public String toString() {
 	    return getPassengerId() + "," +
 	           getName() + "," +
 	           getSurname() + "," +

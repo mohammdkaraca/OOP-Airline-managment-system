@@ -60,10 +60,10 @@ public class FileOp {
         return flights;
     }
 
-    public static Map<Integer, Passenger> getPassengerData(String fileName)
+    public static Map<Long, Passenger> getPassengerData(String fileName)
             throws FileNotFoundException {
 
-        Map<Integer, Passenger> passengers = new HashMap<>();
+        Map<Long, Passenger> passengers = new HashMap<>();
         try (Scanner sc = new Scanner(new File(fileName))) {
 
             while (sc.hasNextLine()) {
@@ -81,7 +81,7 @@ public class FileOp {
                             Integer.parseInt(d[0]),
                             d[1],
                             d[2],
-                            Integer.parseInt(d[3])
+                            Long.parseLong(d[3])
                     );
 
                     passengers.put(p.getPassengerId(), p);
@@ -129,7 +129,7 @@ public class FileOp {
     public static Map<String, Reservation> getReservationData(
             String fileName,
             Map<Integer, Flight> flights,
-            Map<Integer, Passenger> passengers)
+            Map<Long, Passenger> passengers)
             throws FileNotFoundException {
 
         Map<String, Reservation> reservations = new HashMap<>();
@@ -148,12 +148,13 @@ public class FileOp {
                 try {
                     String reservationId = d[0];
                     int flightNum = Integer.parseInt(d[1]);
-                    int passengerId = Integer.parseInt(d[2]);
+                    long passengerId = Long.parseLong(d[2]);
                     Flight flight = flights.get(flightNum);
                     String seatNum = d[3];
                     Passenger passenger = passengers.get(passengerId);
 
                     if (flight == null || passenger == null || flight.getPlane() == null) {
+                    	System.out.println(flight +"     "+passenger +"       "+flight.getPlane());
                         System.out.println("Invalid reservation row: " + Arrays.toString(d));
                         continue;
                     }

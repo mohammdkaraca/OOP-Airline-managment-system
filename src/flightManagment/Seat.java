@@ -59,9 +59,9 @@ public class Seat {
 		return level;
 	}
 
-	public void setLevel(SeatClass level) {//adding checker for the setlevel method 0,1
+	public void setLevel(int level) {//adding checker for the setlevel method 0,1
 		
-		 this.level = level;
+		 this.level = level == 0 ? SeatClass.ECONOMY : SeatClass.BUSINESS;
 	}
 
 	@Override

@@ -11,12 +11,12 @@ public class Main {
         SwingUtilities.invokeLater(() -> {
             try {
                 // 1. Initialize Manager
-                FlightManager manager = new FlightManager();
+                //FlightManager manager = new FlightManager();
                 System.out.println("Initializing Flight Manager...");
 
                 // 2. Load Data (Make sure csv files exist in project root)
                 // Note: The createFlight method in your code acts as the data loader
-                Database db = manager.createFlight("dummy_path"); 
+                Database db = FlightManager.extractFileData(); 
 
                 if(db.flights.isEmpty() && db.planes.isEmpty()) {
                     System.out.println("Warning: No data loaded. Check CSV file paths.");
@@ -26,7 +26,7 @@ public class Main {
                     System.out.println("Reservations loaded: " + db.reservations.size());
                 }
 
-                // 3. Launch GUI
+                // 3. Launch GUI 
                 AirlineGUI gui = new AirlineGUI(db);
                 gui.setVisible(true);
 

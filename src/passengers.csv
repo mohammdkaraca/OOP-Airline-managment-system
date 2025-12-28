@@ -1,4 +1,5 @@
-passengerId,firstName,lastName,age
+passengerId,name,surname,contactNumber
+240,mohammad,hashfe,5511264568
 1,Mohammad,Karaca,22
 2,Ayse,Yilmaz,30
 3,John,Doe,45

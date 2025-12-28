@@ -31,6 +31,9 @@ public class Flight extends FlightManager {
 		ticketList = new HashMap<>();
 		
 	}
+	public void addTicket(Ticket ticket) {
+	    ticketList.put(ticket.getTicketId(), ticket);
+	}
 	public Map<Integer, Ticket> getTicketList(){
 	    return Collections.unmodifiableMap(ticketList); // passing a controlled map instead of raw map safety reasons not needed
 

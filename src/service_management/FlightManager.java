@@ -9,12 +9,9 @@ import java.time.LocalTime;
 
 public class FlightManager {
 	
-	public FlightManager () {
-		
-	}
 	//first functions create, update and delete flights
 	
-	public void createFlight(int flightNum,String departurePlace,String arrivalPlace,LocalDate date,LocalTime hour,Duration duration) {
+	public static void createFlight(int flightNum,String departurePlace,String arrivalPlace,LocalDate date,LocalTime hour,Duration duration) {
 			//extract data from gui and create flites make sure to save the file before exiting program
 		//system needs to set a plane for the user not the user choose 
 			
@@ -44,7 +41,7 @@ public class FlightManager {
 		
 		
 	}
-	public Database createFlight(String filePath) throws FileNotFoundException {
+	public static Database extractFileData() throws FileNotFoundException {
 		//call the file io class functions and create the flights with the input from the csv files
 		//since the FileOp class is a helper class not a object type class its functions should be static as well(it has an empty constructor)
 		Database data = new Database();
@@ -57,12 +54,38 @@ public class FlightManager {
 		return data;
 		
 	}
-	public Flight updateFlight(Flight flight) {
-		
+	public static Flight createFlight(int flightNum,String departurePlace,String arrivalPlace,LocalDate date,LocalTime hour,Duration duration,Plane plane,Database db) {
+		Flight flight = new Flight(flightNum,departurePlace,arrivalPlace,date,hour,duration,plane);
+		db.flights.put(flightNum, flight);
+		FileOp.saveFile("/Users/mo/Desktop/AirlineManagment/src/flights.csv", db.flights.values(),false,true,
+				        "flightNum,departure,arrival,date,time,duration,planeId");
 		return flight;
 	}
-	public boolean deleteFlight(int flightNum) {
+	public static Plane createPlane(int planeId,String model,int capacity,int rows,Database db) {
+		Plane plane = new Plane(planeId,model,capacity,rows);
+		db.planes.put(planeId, plane);
+		FileOp.saveFile("/Users/mo/Desktop/AirlineManagment/src/planes.csv", db.planes.values(),false,true,
+				        "planeId,model,capacity,rows");
+		return plane;
+	}
+	public static Flight updateFlight(Database db,Flight flight) {
+		if(db.flights.containsKey(flight.getFlightNum())) {
+			db.flights.put(flight.getFlightNum(), flight);
+			FileOp.saveFile("/Users/mo/Desktop/AirlineManagment/src/flights.csv", db.flights.values(),false,true,
+					        "flightNum,departure,arrival,date,time,duration,planeId");
+		}
+		return flight;
 		
+	}
+	public static boolean deleteFlight(Database db,int flightNum) {
+		//delete flight from db and update the csv file
+		//return true if deleted false if not found
+		if(!db.flights.containsKey(flightNum)) {
+			return false;
+		}
+		db.flights.remove(flightNum);
+		FileOp.saveFile("/Users/mo/Desktop/AirlineManagment/src/flights.csv", db.flights.values(),false,true,
+				        "flightNum,departure,arrival,date,time,duration,planeId");
 		return true;
 	}
 	 

@@ -21,6 +21,12 @@ public class Ticket {
 			this.price = price;
 			this.baggageAllowance = baggageAllowance;
 		}
+		public Ticket(Reservation reservation, double price, int baggageAllowance) {
+			this.ticketId = (int)(Math.random() * 100000); // Generate a random ticket ID
+			this.reservation = reservation;
+			this.price = price;
+			this.baggageAllowance = baggageAllowance;
+		}
 		/*
 		public Ticket(int ticketId,String reservationCode,double price,int baggageAllowance) {
 			this.ticketId = ticketId;
@@ -31,11 +37,7 @@ public class Ticket {
 		
 		
 
-		@Override
-		public String toString() {
-			return "Ticket [ticketId=" + ticketId + ", reservation=" + reservation + ", price=" + price
-					+ ", baggageAllowance=" + baggageAllowance + "]";
-		}
+		
 
 		public int getTicketId() {
 			return ticketId;
@@ -69,7 +71,7 @@ public class Ticket {
 			this.baggageAllowance = baggageAllowance;
 		}
 		
-		public String toFileString() {
+		public String toString() {
 		    return getTicketId() + "," +
 		           getReservationCode() + "," +
 		           getPrice() + "," +

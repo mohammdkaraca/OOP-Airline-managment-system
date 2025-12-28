@@ -21,12 +21,13 @@ public class Reservation {
 			this.dateOfReservation = dateOfReservation;
 		}
 		
-		public Reservation(String reservationCode,int flightNum,int passengerId,String seatNum,LocalDate dateOfReservation) {
-			this.reservationCode = reservationCode;
-			this.flightNum = flightNum;
-			this.passengerId = passengerId;
-			this.seatNum = seatNum;
+		public Reservation(Flight flight,Passenger passenger,Seat seat,LocalDate dateOfReservation) {
+			this.reservationCode = "R"+(int)(Math.random() * 100000); // Generate a random reservation code
+			this.flight = flight;
+			this.passenger = passenger;
+			this.seat = seat;
 			this.dateOfReservation = dateOfReservation;
+			
 		}
 
 		public String getReservationCode() {
@@ -69,7 +70,7 @@ public class Reservation {
 			this.dateOfReservation = dateOfReservation;
 		}
 		
-		public String toFileString() {
+		public String toString() {
 		    return getReservationCode() + "," +
 		           getFlight().getFlightNum() + "," +
 		           getPassenger().getPassengerId() + "," +

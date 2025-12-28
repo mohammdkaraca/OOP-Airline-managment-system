@@ -3,6 +3,8 @@ package flightManagment;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import service_management.SeatManager;
 //fix the issue of seats needed to be sorted or not
 //as well as fixing the issue of having them filled in or not
 //if not filled in we need to check according to reservedStatus
@@ -21,21 +23,11 @@ public class Plane {
 			int col = capacity/seatAmount;
 			this.seatM = new Seat[seatAmount][col];			
 			
-			initializeSeats(seatAmount,col);
+			seatMap = SeatManager.initializeSeats(seatAmount,col,seatM,seatMap);
 			this.colAmount= seatAmount;
 			
 		}
-		private void initializeSeats(int rows, int cols) {
-		    for (int i = 0; i < rows; i++) {
-		        char rowLetter = (char) ('A' + i);
-		        for (int j = 0; j < cols; j++) {
-		            Seat s = new Seat(rowLetter + String.valueOf(j + 1));
-		            //System.out.println(rowLetter + String.valueOf(j + 1));
-		            seatM[i][j] = s;
-		            seatMap.put(s.getSeatNum(), s);
-		        }
-		    }
-		}
+		
 
 
 		    public Seat getSeatByNumber(String seatNum) {
