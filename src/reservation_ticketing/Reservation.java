@@ -9,7 +9,9 @@ public class Reservation {
 	private Seat seat;
 	private LocalDate dateOfReservation;
 	//added for now might change later
-	
+	private int flightNum;
+	private int passengerId;
+	private String seatNum;
 	
 		public Reservation(String reservationCode,Flight flight,Passenger passenger,Seat seat,LocalDate dateOfReservation) {
 			this.reservationCode = reservationCode;

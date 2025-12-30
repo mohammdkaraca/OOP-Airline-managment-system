@@ -3,8 +3,7 @@ package GUI;
 import java.io.FileNotFoundException;
 import javax.swing.SwingUtilities;
 
-import service_management.Database;
-import service_management.FlightManager;
+import service_management.*;
 
 import javax.swing.JOptionPane;
 
@@ -15,11 +14,9 @@ public class Main {
         SwingUtilities.invokeLater(() -> {
             try {
                 // 1. Initialize Manager
-                //FlightManager manager = new FlightManager();
                 System.out.println("Initializing Flight Manager...");
 
-                // 2. Load Data (Make sure csv files exist in project root)
-                // Note: The createFlight method in your code acts as the data loader
+                // 2. Load Data (Make sure csv files exist in project root/src)
                 Database db = FlightManager.extractFileData(); 
                 
                 if(db.getFlights().isEmpty() && db.getPlanes().isEmpty()) {
@@ -36,7 +33,7 @@ public class Main {
 
             } catch (FileNotFoundException e) {
                 JOptionPane.showMessageDialog(null, 
-                    "CSV Files not found! \nPlease ensure planes.csv, flights.csv, etc. are in the project folder.", 
+                    "CSV Files not found! \nPlease ensure planes.csv, flights.csv, etc. are in the src folder.", 
                     "Initialization Error", 
                     JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
