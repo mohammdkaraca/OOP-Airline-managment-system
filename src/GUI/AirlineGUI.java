@@ -360,11 +360,11 @@ public class AirlineGUI extends JFrame {
 	        sim1.setLayout(new BoxLayout(sim1, BoxLayout.Y_AXIS));
 	        
 	        JTextField numberField = new JTextField(10);
-	        JButton submitBtn = new JButton("Submit");
+	        //JButton submitBtn = new JButton("Submit");
 
 	        sim1.add(new JLabel("Enter Flight ID:"));
 	        sim1.add(numberField);
-	        sim1.add(submitBtn);
+	        //sim1.add(submitBtn);
 	        
 	        
 	        JCheckBox syncCheck = new JCheckBox("Enable Synchronization");
@@ -646,9 +646,16 @@ public class AirlineGUI extends JFrame {
 	            String time = admin_tfTime.getText().trim();
 	            String duration = admin_tfDuration.getText().trim();
 	            String assignedPlaneId = admin_tfPlaneAssign.getText().trim();
+	            if (!database.getPlanes().containsKey(Integer.parseInt(assignedPlaneId))) {
+	                JOptionPane.showMessageDialog(null, "Assigned plane does not exist.", "Validation Error", JOptionPane.ERROR_MESSAGE);
+	                return;
+	            }
+
+	            // FIX: Use .getCopy() so this new flight gets its own independent seats
+	            Plane assignedPlane = database.getPlanes().get(Integer.parseInt(assignedPlaneId)).getCopy();
 	            
 	            FlightManager.createFlight(Integer.parseInt(flightNum),from,to,LocalDate.parse(date),LocalTime.parse(time),
-					   Duration.ofMinutes(Long.parseLong(duration)),database.getPlanes().get(Integer.parseInt(assignedPlaneId)),database);
+					   Duration.ofMinutes(Long.parseLong(duration)),assignedPlane,database);
 	            
 	            System.out.println("[ADMIN] Create Flight requested:");
 	            System.out.println("  Flight Num: " + flightNum);

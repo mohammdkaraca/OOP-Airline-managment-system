@@ -21,7 +21,10 @@ public class Plane {
 		public Map<String, Seat> getSeatMap() {
 		return seatMap;
 	}
-
+	public Plane getCopy() {
+    // Creates a NEW Plane object with the same specifications but fresh seats
+    return new Plane(this.planeID, this.planeModel, this.capacity, this.colAmount);
+}
 
 
 	public void setSeatMap(Map<String, Seat> seatMap) {

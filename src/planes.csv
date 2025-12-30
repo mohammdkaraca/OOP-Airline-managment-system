@@ -3,4 +3,5 @@ planeId,model,capacity,rows
 2,AirbusA320,160,28
 3,Boeing738,190,32
 4,AirbusA321,200,34
+500,boeing,180,6
 5,Embraer190,100,20

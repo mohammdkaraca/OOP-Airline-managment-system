@@ -41,6 +41,8 @@ public class FileOp {
                     continue;
                 }
                 try {
+                    Plane originalPlane = planes.get(Integer.parseInt(d[6]));
+                	Plane flightSpecificPlane = (originalPlane != null) ? originalPlane.getCopy() : null;
                     Flight f = new Flight(
                             Integer.parseInt(d[0]),
                             d[1],
@@ -48,7 +50,7 @@ public class FileOp {
                             LocalDate.parse(d[3]),
                             LocalTime.parse(d[4]),
                             Duration.parse(d[5]),
-                            planes.get(Integer.parseInt(d[6])));
+                            flightSpecificPlane);
                     flights.put(f.getFlightNum(), f);
                 } catch (Exception e) {
                     System.out.println("Error parsing flight row: " + line + " -> " + e.getMessage());
