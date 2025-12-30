@@ -1,4 +1,0 @@
-reservationId,flightNum,passengerId,seatNumber,reservationDate
-R001,1001,1,A1,2025-12-20
-R002,1001,2,A2,2025-12-20
-R003,1002,3,B3,2025-12-21
